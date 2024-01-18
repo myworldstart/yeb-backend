@@ -3,7 +3,7 @@
 <mapper namespace="com.example.server.mapper.OplogMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.example.pojo.Oplog">
+    <resultMap id="BaseResultMap" type="com.example.server.pojo.Oplog">
         <id column="id" property="id" />
         <result column="addDate" property="addDate" />
         <result column="operate" property="operate" />

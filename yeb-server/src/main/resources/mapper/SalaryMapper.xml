@@ -3,7 +3,7 @@
 <mapper namespace="com.example.server.mapper.SalaryMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.example.pojo.Salary">
+    <resultMap id="BaseResultMap" type="com.example.server.pojo.Salary">
         <id column="id" property="id" />
         <result column="basicSalary" property="basicSalary" />
         <result column="bonus" property="bonus" />

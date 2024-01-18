@@ -3,7 +3,7 @@
 <mapper namespace="com.example.server.mapper.RoleMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.example.pojo.Role">
+    <resultMap id="BaseResultMap" type="com.example.server.pojo.Role">
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="nameZh" property="nameZh" />

@@ -32,13 +32,13 @@ public class JwtAuthencationTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = httpServletRequest.getHeader(tokenHeader);
 
-        if(null != authHeader && authHeader.startsWith(tokenHeader)){
+        if(null != authHeader && authHeader.startsWith(tokenHead)){
             String authToken = authHeader.substring(tokenHead.length());
             String username = jwTokenUtil.getUserNameFromToken(authToken);
             if(null!=username && null== SecurityContextHolder.getContext().getAuthentication()){
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 //验证token
-                if(jwTokenUtil.validateToken(tokenHead, userDetails)){
+                if(jwTokenUtil.validateToken(authToken, userDetails)){
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken
                             (userDetails, null, userDetails.getAuthorities());
                     authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
