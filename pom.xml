@@ -13,7 +13,7 @@
         <version>2.5.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com.example.server</groupId>
     <artifactId>yeb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>yeb</name>

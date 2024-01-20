@@ -1,4 +1,4 @@
-package com.example.generator;
+package com.example.server.generator;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
@@ -68,7 +68,7 @@ public class CodeGenerator {
         mpg.setDataSource(dsc);
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.example")
+        pc.setParent("com.example.server")
                 .setEntity("pojo")
                 .setMapper("mapper")
                 .setService("service")
