@@ -89,6 +89,7 @@
         ORDER BY
             m.id
     </select>
+    <select id="getAllMenus" resultType="com.example.server.pojo.Menu"></select>
 
 
 </mapper>
