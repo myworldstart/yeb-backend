@@ -53,14 +53,14 @@ mybatis-plus:
   #配置Mapper映射文件
   mapper-locations: classpath*:/mapper/*Mapper.xml
   # 配置MyBatis数据返回类型别名（默认别名是类名）
-  type-aliases-package: com.xxxx.server.pojo
+  type-aliases-package: com.example.server.pojo
   configuration:
   # 自动驼峰命名
     map-underscore-to-camel-case: false
 
 logging:
   level:
-    com.xxxx.server.mapper: debug
+    com.example.server.mapper: debug
 
 jwt:
   # JWT存储的请求头

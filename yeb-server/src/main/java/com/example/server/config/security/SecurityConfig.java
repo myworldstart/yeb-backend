@@ -47,7 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/doc.html",
                 "/webjars/**",
                 "/swagger-resources/**",
-                "/v2/api-docs/**"
+                "/v2/api-docs/**",
+                "/captcha"
         );
     }
     @Override
@@ -59,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                //所有请求都要求认证
+                //授权
                 .anyRequest().authenticated().withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
 
                     @Override

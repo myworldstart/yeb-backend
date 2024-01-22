@@ -12,6 +12,7 @@ import com.example.server.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -66,7 +67,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         }
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         String token = jwTokenUtil.generateToken(userDetails);
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put("token", token);

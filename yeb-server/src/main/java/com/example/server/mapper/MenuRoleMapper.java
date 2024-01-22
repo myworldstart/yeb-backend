@@ -3,6 +3,7 @@ package com.example.server.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.server.pojo.MenuRole;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -15,4 +16,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MenuRoleMapper extends BaseMapper<MenuRole> {
 
+    Integer insertRecord(@Param("rid") Integer rid, @Param("mids") Integer[] mids);
 }
