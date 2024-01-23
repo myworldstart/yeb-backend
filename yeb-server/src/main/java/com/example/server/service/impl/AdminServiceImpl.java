@@ -2,10 +2,13 @@ package com.example.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.server.AdminUtils;
 import com.example.server.config.security.component.JwTokenUtil;
 import com.example.server.mapper.AdminMapper;
+import com.example.server.mapper.AdminRoleMapper;
 import com.example.server.mapper.RoleMapper;
 import com.example.server.pojo.Admin;
+import com.example.server.pojo.AdminRole;
 import com.example.server.pojo.RespBean;
 import com.example.server.pojo.Role;
 import com.example.server.service.IAdminService;
@@ -17,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +52,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Autowired
     private RoleMapper roleMapper;
+    @Autowired
+    private AdminRoleMapper adminRoleMapper;
 
     @Override
     public RespBean login(String username, String password, String code, HttpServletRequest request) {
@@ -83,6 +89,22 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Override
     public List<Role> getRoles(Integer adminId) {
         return roleMapper.getRoles(adminId);
+    }
+
+    @Override
+    public List<Admin> getAllAdmins(String keywords) {
+        return adminMapper.getAllAdmins(AdminUtils.getCurrentAdmin().getId(), keywords);
+    }
+
+    @Override
+    @Transactional
+    public RespBean updateAdminRole(Integer adminId, Integer[] rids) {
+        adminRoleMapper.delete(new QueryWrapper<AdminRole>().eq("adminId", adminId));
+        Integer result = adminRoleMapper.addAdminRole(adminId, rids);
+        if(rids.length==result){
+            return RespBean.success("更新成功");
+        }
+        return RespBean.error("更新失败!");
     }
 
 }
